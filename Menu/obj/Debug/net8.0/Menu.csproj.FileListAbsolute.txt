@@ -1,0 +1,14 @@
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\bin\Debug\net8.0\Menu.exe
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\bin\Debug\net8.0\Menu.deps.json
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\bin\Debug\net8.0\Menu.runtimeconfig.json
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\bin\Debug\net8.0\Menu.dll
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\bin\Debug\net8.0\Menu.pdb
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\obj\Debug\net8.0\Menu.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\obj\Debug\net8.0\Menu.AssemblyInfoInputs.cache
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\obj\Debug\net8.0\Menu.AssemblyInfo.cs
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\obj\Debug\net8.0\Menu.csproj.CoreCompileInputs.cache
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\obj\Debug\net8.0\Menu.dll
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\obj\Debug\net8.0\refint\Menu.dll
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\obj\Debug\net8.0\Menu.pdb
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\obj\Debug\net8.0\Menu.genruntimeconfig.cache
+C:\Users\bulbul6295\source\repos\Menuv1\Menu\obj\Debug\net8.0\ref\Menu.dll
