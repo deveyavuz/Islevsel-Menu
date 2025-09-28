@@ -10,5 +10,3 @@
                           -5. Dolar - TL Çevirme
                           -6. Saat Dönüştürme
 
-                          <img width="981" height="479" alt="image" src="https://github.com/user-attachments/assets/b497b6a0-b097-4598-99f6-6060a7457179" />
-
