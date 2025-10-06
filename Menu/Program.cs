@@ -1,11 +1,20 @@
 using System.Text.Json;
-using System;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
+
+using HttpClient client = new();
+
+
+decimal bakiye = 1000.00m;
+
+if (File.Exists("bakiye.json"))
+{
+    string json = File.ReadAllText("bakiye.json");
+    bakiye = JsonSerializer.Deserialize<decimal>(json);
+}
+
 
 while (true)
 {
+    Console.WriteLine(DateTime.Now);
     Console.WriteLine("\n=== Menü V1'e hoşgeldiniz ===");
     Console.WriteLine("1. Hesap Makinesi");
     Console.WriteLine("2. Sayı Tahmin Oyunu");
@@ -15,8 +24,9 @@ while (true)
     Console.WriteLine("6. Saat Dönüştürme");
     Console.WriteLine("7. Burç Bulma");
     Console.WriteLine("8. Mini ATM");
+    Console.WriteLine("9. Yardım");
     Console.WriteLine("0. Çıkış");
-    Console.Write("Bir seçenek girin (1-8): ");
+    Console.Write("Bir seçenek girin (1-9): ");
     string secim = Console.ReadLine();
     if (secim == "1")
     {
@@ -41,6 +51,9 @@ while (true)
                 "4" => sayi1 / sayi2,
             };
             Console.WriteLine($"\nSonuç: {sonuc}");
+            Console.WriteLine("\nAna menüye dönmek için bir tuşa basın...");
+            Console.ReadKey();
+            Console.Clear();
             break;
 
         }
@@ -70,10 +83,15 @@ while (true)
             Console.WriteLine(sonuc);
 
             if (kullanicisayi == PCsayi)
+            {
+                Console.WriteLine("\nAna menüye dönmek için bir tuşa basın...");
+                Console.ReadKey();
+                Console.Clear();
                 break;
+
+            }
         }
 
-        Console.ReadKey();
     }
     else if (secim == "3")
     {
@@ -82,8 +100,12 @@ while (true)
         double kilo = Convert.ToDouble(Console.ReadLine());
         Console.Write("Lütfen boyunuzu (m veya cm) girin (örn=1,75): ");
         double boy = Convert.ToDouble(Console.ReadLine());
+        if (boy > 3)
+        {
+            boy /= 100;
+        }
 
-        double vki = kilo / (boy * boy);
+            double vki = kilo / (boy * boy);
 
         string sonuc = vki switch
         {
@@ -96,8 +118,10 @@ while (true)
             _ => "Dinazor"
         };
         Console.WriteLine($"Vücut Kitle İndeksiniz: {Math.Round(vki, 2)} yani {sonuc}");
+        Console.WriteLine("\nAna menüye dönmek için bir tuşa basın...");
         Console.ReadKey();
-        break;
+        Console.Clear();
+        continue;
 
     }
     else if (secim == "4")
@@ -122,15 +146,16 @@ while (true)
             sonuc = "Geçtiniz.";
         }
         Console.WriteLine($"\nNot ortalamanız: {Math.Round(ortalama, 2)}, yani {sonuc}");
+        Console.WriteLine("\nAna menüye dönmek için bir tuşa basın...");
         Console.ReadKey();
-        break;
+        Console.Clear();
+        continue;
     }
     else if (secim == "5")
     {
         string Dolarurl = "https://api.exchangerate-api.com/v4/latest/USD";
         string Eurourl = "https://api.exchangerate-api.com/v4/latest/EUR";
 
-        using HttpClient client = new();
         string jsonDolar = await client.GetStringAsync(Dolarurl);
 
         string jsonEuro = await client.GetStringAsync(Eurourl);
@@ -153,7 +178,7 @@ while (true)
         Console.WriteLine("4 - TL - Euro");
         Console.Write("Ne hesaplamak istiyorsunuz: ");
         string kurSecim = Console.ReadLine();
-        if (secim == "1")
+        if (kurSecim == "1")
         {
             Console.Write("Kaç Dolar bozdurmak istiyorsunuz: ");
             double dolar = Convert.ToDouble(Console.ReadLine());
@@ -187,93 +212,24 @@ while (true)
             Console.WriteLine("Geçersiz seçim.");
 
         }
+        Console.WriteLine("\nAna menüye dönmek için bir tuşa basın...");
         Console.ReadKey();
-
-
-    }
-    else if (secim == "6")
-    {
-        Console.WriteLine("=== Dakika - Saat dönüştürme ===");
-        Console.WriteLine("\n1 - Dakika - Saat");
-        Console.WriteLine("2 - Saat - Dakika");
-        Console.Write("Seçim: ");
-        string saatSecim = Console.ReadLine();
-        if (saatSecim == "1")
-        {
-            Console.Write("\nKaç dakika dönüştüreceksiniz: ");
-            int dakika = Convert.ToInt32(Console.ReadLine());
-            int saat = dakika / 60;
-            int kalanDakika = dakika % 60;
-            Console.WriteLine($"{dakika} dakika = {saat} saat ve {kalanDakika} dakika");
-        }
-        else if (saatSecim == "2")
-        {
-            Console.Write("\nKaç saat dönüştüreceksiniz: ");
-            int saat = Convert.ToInt32(Console.ReadLine());
-            int dakika = saat * 60;
-            Console.WriteLine($"{saat} saat = {dakika} dakika");
-        }
-        else
-        {
-            Console.WriteLine("Geçersiz seçim 1 veya 2 girin.");
-        }
-
-
-        Console.ReadKey();
-    }
-    else if (secim == "7")
-    {
-        Console.Write("Doğum gününüzü girin (1-31): ");
-        int gun = Convert.ToInt32(Console.ReadLine());
-
-        Console.Write("Doğum ayınızı girin (1-12): ");
-        int ay = Convert.ToInt32(Console.ReadLine());
-
-        string burc = "";
-
-        if ((gun >= 21 && ay == 3) || (gun <= 20 && ay == 4))
-            burc = "Koç";
-        else if ((gun >= 21 && ay == 4) || (gun <= 21 && ay == 5))
-            burc = "Boğa";
-        else if ((gun >= 22 && ay == 5) || (gun <= 21 && ay == 6))
-            burc = "İkizler";
-        else if ((gun >= 22 && ay == 6) || (gun <= 22 && ay == 7))
-            burc = "Yengeç";
-        else if ((gun >= 23 && ay == 7) || (gun <= 22 && ay == 8))
-            burc = "Aslan";
-        else if ((gun >= 23 && ay == 8) || (gun <= 22 && ay == 9))
-            burc = "Başak";
-        else if ((gun >= 23 && ay == 9) || (gun <= 23 && ay == 10))
-            burc = "Terazi";
-        else if ((gun >= 24 && ay == 10) || (gun <= 22 && ay == 11))
-            burc = "Akrep";
-        else if ((gun >= 23 && ay == 11) || (gun <= 21 && ay == 12))
-            burc = "Yay";
-        else if ((gun >= 22 && ay == 12) || (gun <= 20 && ay == 1))
-            burc = "Oğlak";
-        else if ((gun >= 21 && ay == 1) || (gun <= 19 && ay == 2))
-            burc = "Kova";
-        else if ((gun >= 20 && ay == 2) || (gun <= 20 && ay == 3))
-            burc = "Balık";
-        else
-            burc = "Geçersiz tarih girdiniz!";
-
-        Console.WriteLine($"Burcunuz: {burc}");
-        Console.ReadKey();
+        Console.Clear();
+        continue;
     }
     else if (secim == "8")
     {
-        Console.WriteLine("\n=== Mini ATM ===");
-        Console.WriteLine("\n1 - para yatırma");
-        Console.WriteLine("2 - para çekme");
-        Console.WriteLine("3 - bakiye sorgulama");
-        Console.WriteLine("4 - çıkış");
-        Console.Write("\nLütfen yapmak istediğiniz işlemi seçiniz: ");
-        string atmsecim = Console.ReadLine();
-        decimal bakiye = 1000.00m;
         bool devam = true;
+        
         while (devam)
         {
+            Console.WriteLine("\n=== Mini ATM ===");
+            Console.WriteLine("\n1 - para yatırma");
+            Console.WriteLine("2 - para çekme");
+            Console.WriteLine("3 - bakiye sorgulama");
+            Console.WriteLine("4 - çıkış");
+            Console.Write("\nLütfen yapmak istediğiniz işlemi seçiniz: ");
+            string atmsecim = Console.ReadLine();
             switch (atmsecim)
             {
                 case "1":
@@ -297,32 +253,45 @@ while (true)
                     break;
                 case "3":
                     Console.WriteLine($"Mevcut bakiyeniz: {bakiye:C}");
-                    break;
+                    Console.ReadKey();
+                    continue;
                 case "4":
                     devam = false;
                     Console.WriteLine("Çıkış yapılıyor...");
+                    File.WriteAllText("bakiye.json", JsonSerializer.Serialize(bakiye));
                     break;
                 default:
                     Console.WriteLine("Geçersiz seçim. Lütfen tekrar deneyin.");
-                    break;
-            }
-            if (devam)
-            {
-                Console.Write("\nLütfen yapmak istediğiniz işlemi seçiniz: ");
-                atmsecim = Console.ReadLine();
+                    Console.ReadKey();
+                    continue;
             }
         }
-
-
+    }
+    else if (secim == "9")
+    {
+        ConsoleColor orjin = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("=== Yardım Sayfası ===");
+        Console.WriteLine("- Menü arasında seçimler yaparak istediğiniz işleve gidebilirsiniz ");
+        Console.WriteLine("- Program sonsuz döngüdedir çıkmak için ana menüden '0' tuşlayıp çıkabilirsiniz ");
+        Console.WriteLine("- Herhangi bir tuşa basarak ana menüye dönebilirsiniz ");
+        Console.ReadKey();
+        Console.ForegroundColor = orjin;
+        Console.WriteLine("\nAna menüye dönmek için bir tuşa basın...");
+        Console.ReadKey();
+        Console.Clear();
+        continue;
     }
     else if (secim == "0")
     {
         Console.WriteLine("Çıkış yapılıyor...");
+        File.WriteAllText("bakiye.json", JsonSerializer.Serialize(bakiye));
         break;
     }
     else
     {
-        Console.WriteLine("Geçersiz seçim. Lütfen 1-5 arasında bir sayı girin.");
+        Console.WriteLine("Geçersiz seçim. Lütfen 0-9 arasında bir sayı girin.");
+        Console.Clear();
         continue;
     }
 }
