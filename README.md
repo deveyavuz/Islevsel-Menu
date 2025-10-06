@@ -1,4 +1,5 @@
-<img width="974" height="510" alt="image" src="https://github.com/user-attachments/assets/1c165332-6475-4682-a11f-293e99161a58" />
+<img width="978" height="510" alt="image" src="https://github.com/user-attachments/assets/ac9c96cb-c43e-49e9-b40c-4209a0f1b699" />
+
 
 
 İçinde güncel dolar kuru hesaplama (api ile) gibi daha birçok özellik olan kendimi geliştirmek ve geliştirirken yaptığım projeleri bir menü haline getirdiğim === Menuv1 ===
@@ -12,4 +13,5 @@
                           -6. Saat Dönüştürme
                           -7. Burç bulma
                           -8. Mini ATM
+                          -9. Yardım Menüsü
 
